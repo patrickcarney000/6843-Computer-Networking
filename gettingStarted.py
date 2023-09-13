@@ -10,19 +10,19 @@ def welcome_assignment_answers(question):
     elif question == "Is it possible to decrypt a message without a key? - Yes/No":
         answer = "No"
     elif question == "In Slack, what is the secret passphrase posted in the #lab-python-getting-started channel posted by a TA?":
-        answer == "pcap"
+        answer = "pcap"
     elif question == "Is it possible to decode a message without a key? - Yes/No":
-        answer == "Yes"
+        answer = "Yes"
     elif question == "Is a hashed message supposed to be un-hashed? - Yes/No":
-        answer == "No"
+        answer = "No"
     elif question == "What is the SHA256 hashing value of your NYU email and use the answer in your code - ":
-        answer == "fc08f8c20059476c5e1c1dcf4318172a4992504ab6b2b979b14d9b78fbfaed0c"
+        answer = "fc08f8c20059476c5e1c1dcf4318172a4992504ab6b2b979b14d9b78fbfaed0c"
     elif question == "Is MD5 a secured hashing algorithm? - Yes/No":
-        answer == "No"
+        answer = "No"
     elif question == "What layer of the TCP/IP model does the protocol DNS belong to? - The answer should be an integer number":
-        answer == 7
+        answer = 7
     elif question == "What layer of the TCP/IP model does the protocol ICMP belong to? - The answer should be an integer number":
-        answer == 2
+        answer = 2
     else: 
         ### you should understand why this else case should be included
         ### what happens if there is a typo in one of the questions?
