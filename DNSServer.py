@@ -112,7 +112,7 @@ def run_dns_server():
             # Wait for incoming DNS requests
             data, addr = server_socket.recvfrom(1024)
             # Parse the request using the `dns.message.from_wire` method
-            request = dns.message.from_wire(bytes)
+            request = dns.message.from_wire(data)
             #print(request)
             # Create a response message using the `dns.message.make_response` method
             response = dns.message.make_response(request)
