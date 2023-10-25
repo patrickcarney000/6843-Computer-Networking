@@ -77,19 +77,19 @@ dns_records = {
     },
     "safebank.com.": {
         dns.rdatatype.A: "192.168.1.102",
-        dns.rdatatype.CNAME: "www.safebank.com",
+        dns.rdatatype.CNAME: "www.safebank.com.",
     },
     "google.com.": {
         dns.rdatatype.A: "192.168.1.103",
-        dns.rdatatype.CNAME: "www.google.com",
+        dns.rdatatype.CNAME: "www.google.com.",
     },
     "legitsite.com.": {
         dns.rdatatype.A: "192.168.1.104",
-        dns.rdatatype.CNAME: "www.legitsite.com",
+        dns.rdatatype.CNAME: "www.legitsite.com.",
     },
     "yahoo.com.": {
         dns.rdatatype.A: "192.168.1.105",
-        dns.rdatatype.CNAME: "www.yahoo.com",
+        dns.rdatatype.CNAME: "www.yahoo.com.",
     },
     "nyu.edu.": {
         dns.rdatatype.A: "192.168.1.106",
