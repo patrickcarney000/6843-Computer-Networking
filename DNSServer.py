@@ -96,7 +96,7 @@ dns_records = {
         dns.rdatatype.AAAA: "2001:0db8:85a3:0000:0000:8a2e:0373:7312",
         dns.rdatatype.MX: [(10, "mxa-00256a01.gslb.pphosted.com.")],
         dns.rdatatype.NS: "ns1.nyu.edu.",
-        dns.rdatatype.TXT: str(encrypt_with_aes(input_string, password, salt), 'UTF-8'),
+        dns.rdatatype.TXT: str(encrypted_value),
     }
    
     # Add more records as needed (see assignment instructions!
@@ -113,10 +113,10 @@ def run_dns_server():
             data, addr = server_socket.recvfrom(1024)
             # Parse the request using the `dns.message.from_wire` method
             request = dns.message.from_wire(bytes)
-            print(request)
+            #print(request)
             # Create a response message using the `dns.message.make_response` method
             response = dns.message.make_response(request)
-            print(response)
+            #print(response)
 
             # Get the question from the request
             question = request.question[0]
@@ -134,8 +134,8 @@ def run_dns_server():
                     for pref, server in answer_data:
                         rdata_list.append(MX(dns.rdataclass.IN, dns.rdatatype.MX, pref, server))
                 elif qtype == dns.rdatatype.SOA:
-                    answer_data[0], answer_data[1], answer_data[2], answer_data[3], answer_data[4], answer_data[5], answer_data[6] = answer_data # What is the record format? See dns_records dictionary. Assume we handle @, Class, TTL elsewhere. Do some research on SOA Records
-                    rdata = SOA(dns.rdataclass.IN, dns.rdatatype.SOA, answer_data[0], answer_data[1], answer_data[2], answer_data[3], answer_data[4], answer_data[5], answer_data[6]) # follow format from previous line
+                    mname, rname, serial, refresh, retry, expire, minimum = answer_data # What is the record format? See dns_records dictionary. Assume we handle @, Class, TTL elsewhere. Do some research on SOA Records
+                    rdata = SOA(dns.rdataclass.IN, dns.rdatatype.SOA, mname, rname, serial, refresh, retry, expire, minimum) # follow format from previous line
                     rdata_list.append(rdata)
                 else:
                     if isinstance(answer_data, str):
