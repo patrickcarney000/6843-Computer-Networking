@@ -43,7 +43,7 @@ def decrypt_with_aes(encrypted_data, password, salt):
     return decrypted_data.decode('utf-8')
 
 salt = b"Tandon" # Remember it should be a byte-object
-password = "pc3430"
+password = "pc3430@nyu.edu"
 input_string = "AlwaysWatching"
 
 encrypted_value = encrypt_with_aes(input_string, password, salt) # test function
@@ -64,6 +64,7 @@ dns_records = {
         dns.rdatatype.CNAME: 'www.example.com.',
         dns.rdatatype.NS: 'ns.example.com.',
         dns.rdatatype.TXT: ('This is a TXT record',),
+        dns.rdatatype.MX: [(10, "mail.example.com.")],
         dns.rdatatype.SOA: (
             'ns1.example.com.', #mname
             'admin.example.com.', #rname
@@ -72,30 +73,30 @@ dns_records = {
             1800, #retry
             604800, #expire
             86400, #minimum
-        )
+        ),
     },
     "safebank.com.": {
         dns.rdatatype.A: "192.168.1.102",
-        dns.rdatatype.CNAME: "www.safebank.com."
+        dns.rdatatype.CNAME: "www.safebank.com",
     },
     "google.com.": {
         dns.rdatatype.A: "192.168.1.103",
-        dns.rdatatype.CNAME: "www.google.com."
+        dns.rdatatype.CNAME: "www.google.com",
     },
     "legitsite.com.": {
         dns.rdatatype.A: "192.168.1.104",
-        dns.rdatatype.CNAME: "www.legitsite.com."
+        dns.rdatatype.CNAME: "www.legitsite.com",
     },
     "yahoo.com.": {
         dns.rdatatype.A: "192.168.1.105",
-        dns.rdatatype.CNAME: "www.yahoo.com."
+        dns.rdatatype.CNAME: "www.yahoo.com",
     },
     "nyu.edu.": {
         dns.rdatatype.A: "192.168.1.106",
         dns.rdatatype.AAAA: "2001:0db8:85a3:0000:0000:8a2e:0373:7312",
         dns.rdatatype.MX: [(10, "mxa-00256a01.gslb.pphosted.com.")],
         dns.rdatatype.NS: "ns1.nyu.edu.",
-        dns.rdatatype.TXT: str(encrypted_value)
+        dns.rdatatype.TXT: str(encrypted_value),
     }
    
     # Add more records as needed (see assignment instructions!
