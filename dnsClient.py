@@ -84,16 +84,15 @@ def dns_query(type, name, server):
     qname_parts = name.split('????')  # How can we easily split the string?
     qname_encoded_parts = [struct.pack('B', len(part)) + part.encode('????') for part in
                            qname_parts]  # Make sure it's encoded as a sequence of the right character encoding type (lowercase)
-    qname_encoded = b''.join(
-        qname_encoded_parts) + b'\x??'  # enter the closing byte value to signify the end of the domain string (two digits)
+    qname_encoded = b''.join(qname_encoded_parts) + b'\x00'  # enter the closing byte value to signify the end of the domain string (two digits)
 
     # Encode the QTYPE and QCLASS
 
     if type == 'A':
         qtype = 1  # Lookup the Resource Record value
-        elif type == 'AAAA':
+    elif type == 'AAAA':
         qtype = 28  # Lookup the Resource Record value
-        else:
+    else:
         raise ValueError('Invalid type')
 
     qclass = 1  # Lookup the Resource Record class being requested
@@ -118,8 +117,7 @@ def dns_query(type, name, server):
                                                                   response_header)  # We are unpacking the binary data of the response header into individual values representing the fields of the DNS header.
 
     # Parse the response question section (same as query)
-    response_question =
-    data[12:12+len(question)]  # The data variable starts immediately after the header section, so what is it's index? Note the two '??' '??' will be the same value as we start at a specific index and then go for the entire length of the binary data received.
+    response_question = data[12:12+len(question)]  # The data variable starts immediately after the header section, so what is it's index? Note the two '??' '??' will be the same value as we start at a specific index and then go for the entire length of the binary data received.
     assert response_question == question
 
     # Parse the response answer section
