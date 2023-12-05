@@ -81,8 +81,8 @@ def dns_query(type, name, server):
     # 2. nyu (length of 3)
     # 3. edu (length of 3)
 
-    qname_parts = name.split('????')  # How can we easily split the string?
-    qname_encoded_parts = [struct.pack('B', len(part)) + part.encode('????') for part in
+    qname_parts = name.split('.')  # How can we easily split the string?
+    qname_encoded_parts = [struct.pack('B', len(part)) + part.encode('utf-8') for part in
                            qname_parts]  # Make sure it's encoded as a sequence of the right character encoding type (lowercase)
     qname_encoded = b''.join(qname_encoded_parts) + b'\x00'  # enter the closing byte value to signify the end of the domain string (two digits)
 
@@ -156,12 +156,12 @@ def dns_query(type, name, server):
         rdata = response_answer[offset:offset + rdlength]
         offset += rdlength
 
-        if type == 'A':  # Lookup Type value
+        if type == 1:  # Lookup Type value
             # A record (IPv4 address)
             ipv4 = socket.inet_ntop(socket.AF_INET, rdata)
-            print(f'{name} has IPv4 address {ipv4}') 
+            print(f'{name} has IPv4 address {ipv4}')
             return ipv4
-        elif type == 'AAAA':  # Lookup Type value
+        elif type == 28:  # Lookup Type value
             # AAAA record (IPv6 address)
             ipv6 = socket.inet_ntop(socket.AF_INET6, rdata)
             print(f'{name} has IPv6 address {ipv6}')
